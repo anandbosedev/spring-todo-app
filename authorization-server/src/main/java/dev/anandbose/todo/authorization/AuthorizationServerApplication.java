@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 @SpringBootApplication
@@ -39,6 +40,11 @@ public class AuthorizationServerApplication {
 						.scope(OidcScopes.PROFILE)
 						.scope("todo.read")
 						.scope("todo.write")
+						.clientSettings(
+							ClientSettings.builder()
+							.requireAuthorizationConsent(true)
+							.build()
+						)
 						.build();
 				repository.save(client);
 			} catch (Exception e) {
