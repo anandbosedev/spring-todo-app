@@ -14,9 +14,9 @@ public class DataSourceConfig {
     public DataSource developmentDataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
-                .url("jdbc:postgresql://localhost:5432/todo_dev")
-                .username("todo_dev")
-                .password("todo_dev_password")
+                .url("jdbc:postgresql://localhost:5432/todo_dev_auth")
+                .username("todo_dev_auth")
+                .password("todo_dev_auth_password")
                 .build();
     }
 
@@ -25,9 +25,9 @@ public class DataSourceConfig {
     public DataSource productionDataSource() {
         return DataSourceBuilder.create()
                 .driverClassName("org.postgresql.Driver")
-                .url("jdbc:postgresql://localhost:5432/todo_prod")
-                .username("todo_prod")
-                .password("todo_prod_password")
+                .url("jdbc:postgresql://localhost:5432/todo_prod_auth")
+                .username("todo_prod_auth")
+                .password("todo_prod_auth_password")
                 .build();
     }
 }

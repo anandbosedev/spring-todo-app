@@ -85,17 +85,17 @@
 				<!-- <version>4.32.0</version> -->
 				<configuration>
 					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost:5432/todo_prod</url>
-					<username>todo_prod</username>
-					<password>todo_prod_password</password>
+					<url>jdbc:postgresql://localhost:5432/todo_prod_auth</url>
+					<username>todo_prod_auth</username>
+					<password>todo_prod_auth_password</password>
 
 					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
 					<diffChangeLogFile>src/main/resources/db/changelog/${maven.build.timestamp}_changelog.yaml</diffChangeLogFile>
 					
 					<referenceDriver>org.postgresql.Driver</referenceDriver>
-					<referenceUrl>jdbc:postgresql://localhost:5432/todo_dev</referenceUrl>
-					<referenceUsername>todo_dev</referenceUsername>
-					<referencePassword>todo_dev_password</referencePassword>
+					<referenceUrl>jdbc:postgresql://localhost:5432/todo_dev_auth</referenceUrl>
+					<referenceUsername>todo_dev_auth</referenceUsername>
+					<referencePassword>todo_dev_auth_password</referencePassword>
 				</configuration>
 			</plugin>
 		</plugins>

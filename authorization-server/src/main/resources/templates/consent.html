@@ -11,7 +11,7 @@
         <input type="hidden" name="client_id" th:value="${clientId}">
         <input type="hidden" name="state" th:value="${state}">
         <input type="checkbox" th:each="scope: ${requestedScopes}" name="scope" th:value="${scope}" th:text="${scope}">
-        <h2 th:if="${grantedScopes}">You already have permissions for these scopes:</h2>
+        <h2 th:if="${grantedScopes}">You already have granted the following scopes:</h2>
         <input th:if="${grantedScopes}" th:each="scope: ${grantedScopes}" type="checkbox" name="scope" th:value="${scope}" th:text="${scope}" disabled checked>
         <button type="submit">Submit</button>
     </form>
