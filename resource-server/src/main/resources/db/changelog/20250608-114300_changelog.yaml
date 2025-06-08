@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1749292953281-1
+    id: 1749363179335-1
     author: anandbose (generated)
     changes:
     - createTable:
@@ -33,7 +33,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: todos
 - changeSet:
-    id: 1749292953281-2
+    id: 1749363179335-2
     author: anandbose (generated)
     changes:
     - createTable:
@@ -63,36 +63,15 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: categories
 - changeSet:
-    id: 1749292953281-3
+    id: 1749363179335-3
     author: anandbose (generated)
     changes:
     - addUniqueConstraint:
-        columnNames: name, owner
-        constraintName: categories_name_owner_key
+        columnNames: name, owner, deleted_on
+        constraintName: categories_name_owner_deleted_on_key
         tableName: categories
 - changeSet:
-    id: 1749292953281-4
-    author: anandbose (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: categories_todos_pkey
-            name: category_entity_id
-            type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: categories_todos_pkey
-            name: todos_id
-            type: BIGINT
-        tableName: categories_todos
-- changeSet:
-    id: 1749292953281-5
+    id: 1749363179335-4
     author: anandbose (generated)
     changes:
     - createTable:
@@ -113,7 +92,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: todos_categories
 - changeSet:
-    id: 1749292953281-6
+    id: 1749363179335-5
     author: anandbose (generated)
     changes:
     - addForeignKeyConstraint:
@@ -128,7 +107,7 @@ databaseChangeLog:
         referencedTableName: todos
         validate: true
 - changeSet:
-    id: 1749292953281-7
+    id: 1749363179335-6
     author: anandbose (generated)
     changes:
     - addForeignKeyConstraint:

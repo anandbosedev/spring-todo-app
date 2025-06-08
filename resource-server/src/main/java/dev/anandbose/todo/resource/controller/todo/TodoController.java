@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,6 +98,18 @@ public class TodoController {
             entity.setUpdatedOn(Calendar.getInstance().getTime());
             todoRepository.save(entity);
         }
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteTodo(@PathVariable Long id, Principal principal) {
+        Optional<TodoEntity> result = todoRepository.findByIdAndOwner(id, principal.getName());
+        if (!result.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        TodoEntity entity = result.get();
+        entity.setDeletedOn(Calendar.getInstance().getTime());
+        todoRepository.save(entity);
         return ResponseEntity.noContent().build();
     }
 }

@@ -12,11 +12,14 @@ import java.security.Principal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +50,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody CategoryCreateRequest request, Principal principal,
+    public ResponseEntity<Void> create(@RequestBody CategoryRequest request, Principal principal,
             UriComponentsBuilder ucb) {
         Date now = Calendar.getInstance().getTime();
         CategoryEntity entity = new CategoryEntity();
@@ -60,4 +63,28 @@ public class CategoryController {
         return ResponseEntity.created(location).build();
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody CategoryRequest request,
+            Principal principal) {
+        Optional<CategoryEntity> result = categoryRepository.findByIdAndOwner(id, principal.getName());
+        if (!result.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        CategoryEntity entity = result.get();
+        entity.setName(request.name());
+        categoryRepository.save(entity);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, Principal principal) {
+        Optional<CategoryEntity> result = categoryRepository.findByIdAndOwner(id, principal.getName());
+        if (!result.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        CategoryEntity entity = result.get();
+        entity.setDeletedOn(Calendar.getInstance().getTime());
+        categoryRepository.save(entity);
+        return ResponseEntity.noContent().build();
+    }
 }

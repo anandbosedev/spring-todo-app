@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "categories", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "owner" }))
+@Table(name = "categories", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "owner", "deletedOn" }))
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
