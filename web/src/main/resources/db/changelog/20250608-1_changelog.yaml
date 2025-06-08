@@ -1,0 +1,173 @@
+databaseChangeLog:
+- changeSet:
+    id: 1749381333849-1
+    author: anandbose (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: spring_session_pk
+            name: primary_id
+            type: CHAR(36)
+        - column:
+            constraints:
+              nullable: false
+            name: session_id
+            type: CHAR(36)
+        - column:
+            constraints:
+              nullable: false
+            name: creation_time
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: last_access_time
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: max_inactive_interval
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: expiry_time
+            type: BIGINT
+        - column:
+            name: principal_name
+            type: VARCHAR(100)
+        tableName: spring_session
+- changeSet:
+    id: 1749381333849-2
+    author: anandbose (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: oauth2_authorized_client_pkey
+            name: client_registration_id
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: oauth2_authorized_client_pkey
+            name: principal_name
+            type: VARCHAR(200)
+        - column:
+            constraints:
+              nullable: false
+            name: access_token_type
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+            name: access_token_value
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: access_token_issued_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: access_token_expires_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            defaultValue: NULL::character varying
+            name: access_token_scopes
+            type: VARCHAR(1000)
+        - column:
+            name: refresh_token_value
+            type: TEXT
+        - column:
+            name: refresh_token_issued_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            defaultValueComputed: CURRENT_TIMESTAMP
+            name: created_at
+            type: TIMESTAMP WITHOUT TIME ZONE
+        tableName: oauth2_authorized_client
+- changeSet:
+    id: 1749381333849-3
+    author: anandbose (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: session_id
+        indexName: spring_session_ix1
+        tableName: spring_session
+        unique: true
+- changeSet:
+    id: 1749381333849-4
+    author: anandbose (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: expiry_time
+        indexName: spring_session_ix2
+        tableName: spring_session
+- changeSet:
+    id: 1749381333849-5
+    author: anandbose (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: principal_name
+        indexName: spring_session_ix3
+        tableName: spring_session
+- changeSet:
+    id: 1749381333849-6
+    author: anandbose (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: spring_session_attributes_pk
+            name: session_primary_id
+            type: CHAR(36)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: spring_session_attributes_pk
+            name: attribute_name
+            type: VARCHAR(200)
+        - column:
+            constraints:
+              nullable: false
+            name: attribute_bytes
+            type: BYTEA
+        tableName: spring_session_attributes
+- changeSet:
+    id: 1749381333849-7
+    author: anandbose (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: session_primary_id
+        baseTableName: spring_session_attributes
+        constraintName: spring_session_attributes_fk
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: primary_id
+        referencedTableName: spring_session
+        validate: true
+

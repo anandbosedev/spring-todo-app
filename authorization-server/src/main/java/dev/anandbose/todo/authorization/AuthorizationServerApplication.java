@@ -36,6 +36,7 @@ public class AuthorizationServerApplication {
 						.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 						.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 						.redirectUri("http://localhost:8000/login/oauth2/code/todo-app")
+						.redirectUri("http://127.0.0.1:8000/login/oauth2/code/todo-app")
 						.scope(OidcScopes.OPENID)
 						.scope(OidcScopes.PROFILE)
 						.scope("todo.read")

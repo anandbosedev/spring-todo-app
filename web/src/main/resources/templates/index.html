@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+</head>
+
+<body>
+    <h1>Hello, <span th:text="${userName}"></span>!</h1>
+    <p th:if="${isLoggedIn}"><a href="/todo">See my todos!</a></p>
+    <p th:unless="${isLoggedIn}"><a href="/todo">Sign in</a> to get started!</p>
+</body>
+
+</html>

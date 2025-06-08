@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1749217295815-1
+    id: 1749380908238-1
     author: anandbose (generated)
     changes:
     - createTable:
@@ -20,7 +20,7 @@ databaseChangeLog:
         - column:
             constraints:
               nullable: false
-            defaultValueComputed: CURRENT_TIMESTAMP
+            defaultValueComputed: now()
             name: client_id_issued_at
             type: TIMESTAMP WITHOUT TIME ZONE
         - column:
@@ -70,7 +70,7 @@ databaseChangeLog:
             type: VARCHAR(2000)
         tableName: oauth2_registered_client
 - changeSet:
-    id: 1749217295815-2
+    id: 1749380908238-2
     author: anandbose (generated)
     changes:
     - createTable:
@@ -190,7 +190,7 @@ databaseChangeLog:
             type: TEXT
         tableName: oauth2_authorization
 - changeSet:
-    id: 1749217295815-3
+    id: 1749380908238-3
     author: anandbose (generated)
     changes:
     - createTable:
@@ -207,7 +207,7 @@ databaseChangeLog:
             type: VARCHAR(50)
         tableName: authorities
 - changeSet:
-    id: 1749217295815-4
+    id: 1749380908238-4
     author: anandbose (generated)
     changes:
     - createTable:
@@ -233,7 +233,7 @@ databaseChangeLog:
             type: VARCHAR(1000)
         tableName: oauth2_authorization_consent
 - changeSet:
-    id: 1749217295815-5
+    id: 1749380908238-5
     author: anandbose (generated)
     changes:
     - createTable:
@@ -257,7 +257,7 @@ databaseChangeLog:
             type: BOOLEAN
         tableName: users
 - changeSet:
-    id: 1749217295815-6
+    id: 1749380908238-6
     author: anandbose (generated)
     changes:
     - addForeignKeyConstraint:
