@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>Your TODO List</h1>
+    <a href="/category">Categories</a>
     <ul>
         <li th:each="todo: ${todoList.content()}" th:text="${todo.description()}"></li>
     </ul>
+    <a href="/todo/create">Create TODO</a>
 </body>
 </html>

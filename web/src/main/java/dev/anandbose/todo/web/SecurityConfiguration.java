@@ -34,6 +34,7 @@ public class SecurityConfiguration {
                 .anyRequest().authenticated())
                 //.exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .oauth2Login(Customizer.withDefaults())
+                .csrf(Customizer.withDefaults())
                 .build();
     }
 
