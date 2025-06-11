@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Allow <span th:text="${clientName}"></span> to access your data in TODO app?</h1>
-    <form action="/oauth2/authorize" method="post">
+    <form th:action="@{/oauth2/authorize}" method="post">
         <input type="hidden" name="client_id" th:value="${clientId}">
         <input type="hidden" name="state" th:value="${state}">
         <input type="checkbox" th:each="scope: ${requestedScopes}" name="scope" th:value="${scope}" th:text="${scope}">
