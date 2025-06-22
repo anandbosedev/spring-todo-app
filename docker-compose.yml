@@ -1,0 +1,54 @@
+services:
+  spring-todo-authorization-server:
+    image: anandbosedev/spring-todo-authorization-server:1.0.0
+    container_name: spring-todo-authorization-server
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/todo_dev_auth
+    networks:
+      - todo-network
+  spring-todo-resource-server:
+    image: anandbosedev/spring-todo-resource-server:1.0.0
+    container_name: spring-todo-resource-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - spring-todo-authorization-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/todo_resource_dev
+      - TODO_JWT_ISSUER_URI=http://spring-todo-authorization-server:9000
+    networks:
+      - todo-network
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecret
+    ports:
+      - "5432:5432"
+    networks:
+      - todo-network
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  todo-network:
+    driver: bridge
+volumes:
+  postgres:
+    driver: local
+  postgres-init:
+    driver: local
