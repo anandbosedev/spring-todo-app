@@ -1,6 +1,6 @@
 services:
   spring-todo-authorization-server:
-    image: anandbosedev/spring-todo-authorization-server:1.0.0
+    image: anandbosedev/spring-todo-authorization-server:latest
     container_name: spring-todo-authorization-server
     ports:
       - "9000:9000"
@@ -12,7 +12,7 @@ services:
     networks:
       - todo-network
   spring-todo-resource-server:
-    image: anandbosedev/spring-todo-resource-server:1.0.0
+    image: anandbosedev/spring-todo-resource-server:latest
     container_name: spring-todo-resource-server
     ports:
       - "8080:8080"
